@@ -1,2 +1,9 @@
 1.查看进程各种ID
-	ps -o pid,pgid,ppid,sid,tty,comm
+	ps -o tpgid,pid,pgid,ppid,sid,tty,comm
+
+	tpgid:控制终端进程组ID
+	pid:进程ID
+	pgid:进程组ID
+	ppid:父进程ID
+	sid:会话ID
+
