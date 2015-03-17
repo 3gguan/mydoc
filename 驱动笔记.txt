@@ -1,0 +1,12 @@
+内核与应用区别：1.权限不同 2.内存映射不同
+查看设备号：cat /proc/devices
+模块加载函数int __init demo_module_init (void) 如果返回给内核的值是0,内核允许模块加载成功;若是非0,则不允许加载.
+模块函数都要加static,以防与内核重名,内核禁止加载.
+模块加载后会在/sys/module/模块名/parameters
+查看打印级别 cat /proc/sys/kernel/printk
+查看中断信息 cat /proc/interrupts
+
+单cpu抢占式内核：1.进程与进程 2.进程与中断
+多cpu抢占式内核：1.进程与进程 2.进程与中断 3.中断与中断
+
+信号量会导致睡眠，所以中断中不能使用信号量.

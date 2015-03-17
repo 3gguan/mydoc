@@ -1,0 +1,95 @@
+export JAVA_HOME=/usr/jdk1.7.0_51
+export JRE_HOME=/usr/jdk1.7.0_51/jre
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
+37.487054,121.444016
+安装gevent
+sudo apt-get install python-dev -y
+sudo apt-get install libevent-dev -y
+sudo apt-get install python-setuptools -y
+sudo easy_install greenlet
+sudo easy_install gevent
+
+
+编译内核：
+需要linux-headers  ncurses libraries
+源码包位置 /usr/src
+安装ncurses libraries   sudo apt-get install ncurses-dev
+创建文件夹 /home/name/build/kernel
+
+
+一、删除缓存
+1，非常有用的清理命令：
+sudo apt-get autoclean                清理旧版本的软件缓存
+sudo apt-get clean                    清理所有软件缓存
+sudo apt-get autoremove             删除系统不再使用的孤立软件
+这三个命令主要清理升级缓存以及无用包的。
+2，清理opera firefox的缓存文件：
+ls ~/.opera/cache4
+ls ~/.mozilla/firefox/*.default/Cache
+3，清理Linux下孤立的包：
+终端命令下我们可以用：
+sudo apt-get install deborphan -y
+4，卸载：tracker
+这个东西一般我只要安装ubuntu就会第一删掉tracker 他不仅会产生大量的cache文件而且还会影响开机速度。所以在新得利里面删掉就行。
+附录：
+包管理的临时文件目录:
+包在
+/var/cache/apt/archives
+没有下载完的在
+/var/cache/apt/archives/partial
+二、删除软件
+ubuntu软件的删除一般用“ubuntu软件中心”或“新立得”就能搞定，但有时用命令似乎更快更好～～
+sudo apt-get remove --purge 软件名
+sudo apt-get autoremove                                                        删除系统不再使用的孤立软件
+sudo apt-get autoclean                                                            清理旧版本的软件缓存
+dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P              清除残余的配置文件
+保证干净。
+三、删除多余内核
+1，首先要使用这个命令查看当前Ubuntu系统使用的内核
+uname -a
+2，再查看所有内核
+dpkg --get-selections|grep linux
+3，最后小心翼翼地删除吧
+sudo apt-get remove linux-image-2.6.32-22-generic
+ps：linux-image-xxxxxx-generic    就是要删除的内核版本
+还有
+linux-headers-xxxxxx
+linux-headers-xxxxxx-generic    总之中间有“xxxxxx”那段的旧内核都能删，注意一般选内核号较小的删。
+
+cat /proc/sys/vm/swappiness
+sudo sysctl vm.swappiness=0
+sudo gedit /etc/sysctl.conf
+vm.swappiness=0
+
+
+
+ibus 翻页   /usr/lib/ibus-sunpinyin/ibus-setup-sunpinyin
+
+
+sudo lsof -i:8087
+sudo kill pid
+
+
+(1) CTRL Z停止进程并放入后台
+(2) jobs 显示当前暂停的进程
+(3) bg %N 使第N个任务在后台运行(%前有空格)
+(4) fg %N 使第N个任务在前台运行
+注：默认bg，fg不带%N时表示对最后一个进程操作
+
+
+
+安装编译环境
+sudo apt-get install linux-headers-$(uname -r)
+
+64安装32运行库
+sudo apt-get install lib32ncurses5-dev lib32ncursesw5-dev
+sudo apt-get install lib32stdc++6
+sudo apt-get install libxtst6:i386
+
+添加ppa源
+sudo add-apt-repository ppa:user/ppa-name //卸载 -r
+wine ppa:ubuntu-wine/ppa
+
+设置ppp0 mtu
+/etc/network/if-up.d 添加脚本

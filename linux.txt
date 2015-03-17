@@ -1,0 +1,2 @@
+1.查看进程各种ID
+	ps -o pid,pgid,ppid,sid,tty,comm
